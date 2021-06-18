@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<title>身分證最後一碼預測</title>
+<script type="text/javascript">
+ 
+function hide(){
+var ans1=document.getElementById("anstext").style.display="none"
+var ans2=document.getElementById("anstext2").style.display="none"
+}
+
+
+
+
+
+function show(){
+var idx=document.getElementById("ip").value
+var error_re=idx.match(/[A-Z]{1}[0-9]{8}/)
+if(error_re==null){alert('請輸入正確格式啦眼幹喔我打程式那麼辛苦')}
+if(error_re==null){return}
+var ide=idx.slice(0,1);
+var id1=idx.slice(1,2);
+var id2=idx.slice(2,3);
+var id3=idx.slice(3,4);
+var id4=idx.slice(4,5);
+var id5=idx.slice(5,6);
+var id6=idx.slice(6,7);
+var id7=idx.slice(7,8);
+var id8=idx.slice(-1);
+
+
+function CA(){
+
+	if(ide=="A"){return 10}
+	else if(ide=="B"){return 11}
+	else if(ide=="C"){return 12}
+	else if(ide=="D"){return 13}
+	else if(ide=="E"){return 14}
+	else if(ide=="F"){return 15}
+	else if(ide=="G"){return 16}
+	
+	else if(ide=="H"){return 17}
+	
+	else if(ide=="I"){return 37}
+	else if(ide=="J"){return 18}
+	else if(ide=="K"){return 19}
+	else if(ide=="L"){return 20}
+	else if(ide=="M"){return 21}
+	else if(ide=="N"){return 22}
+	else if(ide=="O"){return 35}
+	else if(ide=="P"){return 23}
+	else if(ide=="Q"){return 24}
+	else if(ide=="R"){return 25}
+	else if(ide=="S"){return 26}
+	else if(ide=="T"){return 27}
+	else if(ide=="U"){return 28}
+	else if(ide=="V"){return 29}
+	else if(ide=="W"){return 30}
+	else if(ide=="X"){return 31}
+	else if(ide=="Y"){return 32}
+	else if(ide=="Z"){return 33}
+	}
+var idn=((CA()%10)*9)+(((CA()-(CA()%10))/10))*1; 
+//alert(idn)
+var sum1=idn+id1*8+id2*7+id3*6+id4*5+id5*4+id6*3+id7*2+id8*1;
+//alert(sum1)
+var sum2=10-(sum1%10);
+var sum2s=sum2.toString();
+var sum2error=sum2s.match(/.{2}/)
+
+if(sum2error!=null){
+document.getElementById("anstext").style.display="inline"
+document.getElementById("anstext").innerHTML="您的前八碼有誤的啦"
+document.getElementById("anstext").style.fontSize="80px"
+}else{
+document.getElementById("anstext").style.display="inline"
+document.getElementById("anstext2").style.display="inline"
+document.getElementById("anstext2").style.fontSize="50px"
+document.getElementById("anstext2").style.color="red"
+document.getElementById("anstext2").innerHTML=idx+sum2
+	}
+
+		}					
+	
+
+</script>
+</head>
+
+<body>
+<h3>身分證最後一碼忘了怎麼辦? (本機器連前9碼有誤都可以偵測喔!)</h3>
+<label>請輸入身分證前9碼(含英文)</label>
+<input onclick="hide(this)" id="ip" placeholder="H12345678?" maxlength="9"></input type="text">
+<button onclick="show()">獲得你的完整身份證字號</button>
+<br>
+<h3 id="anstext" style="display:none" >您的完整身分證字號為</h3>
+<h3 id="anstext2" style="display:none" ></h3>
+
+
+</body>
+</html>
+<!--執行成功2-->
